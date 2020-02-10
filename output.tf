@@ -1,2 +1,2 @@
-output "cloudfront-dns" { value = "${module.ghost-blog.cloudfront-dns}" }
-output "server-ip" { value = "${module.ghost-blog.server-ip}" }
+output "cloudfront-dns" { value = "${module.samuele.cloudfront-dns}" }
+output "server-ip" { value = "${module.samuelerescablog-post.server-ip}" }

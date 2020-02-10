@@ -1,4 +1,4 @@
-resource "aws_cloudfront_distribution" "ghost-blog" {
+resource "aws_cloudfront_distribution" "samuelerescablog-ghost" {
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "/"

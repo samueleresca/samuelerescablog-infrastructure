@@ -1,5 +1,5 @@
 module "ghost-db" {
-  source              = "ghost-database"
+  source              = "./ghost-database"
   name                = "ghost-db"
 
   db_name             = "${var.db_name}"
@@ -9,8 +9,8 @@ module "ghost-db" {
 }
 
 # Set up the Ghost Server
-module "ghost-blog" {
-  source                  = "ghost-server"
+module "samuelerescablog-ghost" {
+  source                  = "./ghost-server"
   name                    = "ghost-server"
   domain_name             = "${var.domain_name}"
 
