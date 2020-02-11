@@ -1,6 +1,6 @@
 # Get local machine's IP
 data "http" "my-ip" {
-  url = "http://icanhazip.com"
+  url = "http://ipv4.icanhazip.com/"
 }
 
 resource "aws_security_group" "ghost-server" {
@@ -34,9 +34,9 @@ resource "aws_security_group" "ghost-db" {
   description = "Allow SSH inbound, all HTTP inbound, and all outbound traffic"
 
   ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
     security_groups = ["${aws_security_group.ghost-server.id}"]
   }
 }

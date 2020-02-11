@@ -2,7 +2,7 @@
 data "template_file" "ghost-config" {
     template = "${file("${path.module}/configs/config.production.json.tpl")}"
 
-    vars {
+    vars = {
       mysql-host      = "${var.db_host}"
       mysql-db-name   = "${var.db_name}"
       mysql-user      = "${var.db_user}"
@@ -14,7 +14,7 @@ data "template_file" "ghost-config" {
 data "template_file" "nginx-site-config" {
     template = "${file("${path.module}/configs/nginx-site.tpl")}"
 
-    vars {
+    vars = {
       domain-name   = "${var.domain_name}"
     }
 }

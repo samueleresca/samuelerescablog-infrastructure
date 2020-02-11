@@ -1,27 +1,26 @@
 module "ghost-db" {
   source              = "./ghost-database"
-  name                = "ghost-db"
+  name                = "samuelerescablog-db"
 
-  db_name             = "${var.db_name}"
-  db_user             = "${var.db_user}"
-  db_pass             = "${var.db_pass}"
-  security_groups     = ["${aws_security_group.ghost-db.id}"]
+  db_name             = var.db_name
+  db_user             = var.db_user
+  db_pass             = var.db_pass
+  security_groups     = [aws_security_group.ghost-db.id]
 }
 
-# Set up the Ghost Server
-module "samuelerescablog-ghost" {
+module "samuelerescablog-server" {
   source                  = "./ghost-server"
-  name                    = "ghost-server"
-  domain_name             = "${var.domain_name}"
+  name                    = "samuelerescablog-instance"
+  domain_name             = var.domain_name
 
-  db_host                 = "${module.ghost-db.db-host}"
-  db_name                 = "${module.ghost-db.db-name}"
-  db_user                 = "${module.ghost-db.db-user}"
-  db_pass                 = "${module.ghost-db.db-pass}"
+  db_host                 = module.ghost-db.db-host
+  db_name                 = module.ghost-db.db-name
+  db_user                 = module.ghost-db.db-user
+  db_pass                 = module.ghost-db.db-pass
 
-  key_pair_name           = "${var.key_pair_name}"
-  key_pair_loc            = "${var.key_pair_location}"
-  security_groups         = ["${aws_security_group.ghost-server.id}"]
+  key_pair_name           = var.key_pair_name
+  key_pair_loc            = var.key_pair_location
+  security_groups         = [aws_security_group.ghost-server.id]
 
-  cloudfront_ssl_acm_arn  = "${var.cloudfront_ssl_acm_arn}"
+  cloudfront_ssl_acm_arn  = var.cloudfront_ssl_acm_arn
 }

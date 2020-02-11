@@ -5,6 +5,6 @@
 
 # Module directory
 .terraform/
-
+*.pem
 .DS_Store
 /variables.tf

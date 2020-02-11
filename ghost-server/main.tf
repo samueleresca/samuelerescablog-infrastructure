@@ -1,15 +1,15 @@
 resource "aws_instance" "ghost" {
-  ami                     = "${data.aws_ami.ubuntu.id}"
+  ami                     = data.aws_ami.ubuntu.id
   instance_type           = "t2.small"
-  key_name                = "${var.key_pair_name}"
-  vpc_security_group_ids  = ["${var.security_groups}"]
+  key_name                = var.key_pair_name
+  vpc_security_group_ids  = var.security_groups
 
-  tags {
-    Name = "${var.name}"
+  tags = {
+    Name = var.name
   }
 
   lifecycle {
-    ignore_changes  = ["ami"]
+    ignore_changes  = [ami]
   }
 
   root_block_device {
@@ -29,12 +29,13 @@ resource "aws_instance" "ghost" {
     ]
 
     connection {
+      host          = aws_instance.ghost.public_ip
       type          = "ssh"
       user          = "ubuntu"
       private_key   = "${file("${var.key_pair_loc}")}"
     }
 
-    on_failure = "fail"
+    on_failure = fail
   }
 
   provisioner "remote-exec" {
@@ -48,12 +49,13 @@ resource "aws_instance" "ghost" {
     ]
 
     connection {
+      host          = aws_instance.ghost.public_ip
       type          = "ssh"
       user          = "ubuntu"
       private_key   = "${file("${var.key_pair_loc}")}"
     }
 
-    on_failure = "fail"
+    on_failure = fail
   }
 
   provisioner "remote-exec" {
@@ -70,11 +72,12 @@ resource "aws_instance" "ghost" {
 
     connection {
       type          = "ssh"
+      host          = aws_instance.ghost.public_ip
       user          = "ubuntu"
       private_key   = "${file("${var.key_pair_loc}")}"
     }
 
-    on_failure = "fail"
+    on_failure = fail
   }
 
   provisioner "remote-exec" {
@@ -98,11 +101,12 @@ resource "aws_instance" "ghost" {
     ]
 
     connection {
+      host          = aws_instance.ghost.public_ip
       type          = "ssh"
       user          = "ubuntu"
       private_key   = "${file("${var.key_pair_loc}")}"
     }
 
-    on_failure = "fail"
+    on_failure = fail
   }
 }

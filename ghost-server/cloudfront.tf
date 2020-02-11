@@ -1,4 +1,4 @@
-resource "aws_cloudfront_distribution" "samuelerescablog-ghost" {
+resource "aws_cloudfront_distribution" "samuelerescablog-server" {
   enabled             = true
   is_ipv6_enabled     = true
   default_root_object = "/"
@@ -41,7 +41,7 @@ resource "aws_cloudfront_distribution" "samuelerescablog-ghost" {
     max_ttl                = 86400
   }
 
-  cache_behavior {
+  ordered_cache_behavior {
     path_pattern      = "assets/*"
     allowed_methods   = ["GET", "HEAD"]
     cached_methods    = ["GET", "HEAD"]
@@ -59,7 +59,7 @@ resource "aws_cloudfront_distribution" "samuelerescablog-ghost" {
     max_ttl                = 86400
   }
 
-  cache_behavior {
+  ordered_cache_behavior {
     path_pattern      = "content/*"
     allowed_methods   = ["GET", "HEAD"]
     cached_methods    = ["GET", "HEAD"]
@@ -77,7 +77,7 @@ resource "aws_cloudfront_distribution" "samuelerescablog-ghost" {
     max_ttl                = 86400
   }
 
-  cache_behavior {
+  ordered_cache_behavior {
     path_pattern      = "public/*"
     allowed_methods   = ["GET", "HEAD"]
     cached_methods    = ["GET", "HEAD"]
@@ -95,7 +95,7 @@ resource "aws_cloudfront_distribution" "samuelerescablog-ghost" {
     max_ttl                = 86400
   }
 
-  cache_behavior {
+  ordered_cache_behavior {
     path_pattern      = "img_responsive/*"
     allowed_methods   = ["GET", "HEAD"]
     cached_methods    = ["GET", "HEAD"]
@@ -113,7 +113,7 @@ resource "aws_cloudfront_distribution" "samuelerescablog-ghost" {
     max_ttl                = 86400
   }
 
-  tags {
+  tags = {
     Environment = "${var.name}-production"
   }
 
