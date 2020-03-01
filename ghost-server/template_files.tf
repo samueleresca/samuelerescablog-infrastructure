@@ -8,6 +8,9 @@ data "template_file" "ghost-config" {
       mysql-user      = "${var.db_user}"
       mysql-pass      = "${var.db_pass}"
       domain-name     = "${var.domain_name}"
+      ses-server-name = "${var.ses_server_name}"
+      ses-user        = "${var.ses_user}"
+      ses-pass        = "${var.ses_pass}"
     }
 }
 

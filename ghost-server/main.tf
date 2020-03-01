@@ -1,6 +1,6 @@
 resource "aws_instance" "ghost" {
   ami                     = data.aws_ami.ubuntu.id
-  instance_type           = "t2.small"
+  instance_type           = "t2.micro"
   key_name                = var.key_pair_name
   vpc_security_group_ids  = var.security_groups
 

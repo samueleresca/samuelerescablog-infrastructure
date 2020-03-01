@@ -40,3 +40,15 @@ variable "db_user" {
 variable "db_pass" {
   default = "593!MyB!og!Ghost!Pass"
 }
+
+variable "ses_server_name" {
+  default = "ses.amazon.com"
+}
+
+variable "ses_user" {
+  default = "user"
+}
+
+variable "ses_pass" {
+  default = "pass"
+}

@@ -13,6 +13,19 @@
             "database" : "${mysql-db-name}"
         }
     },
+    "mail": {
+    "from": "'Samuele Resca' <info@samuele.dev>",
+    "transport": "SMTP",
+    "options": {
+        "host": "${ses-server-name}",
+        "port": 465,
+        "service": "SES",
+        "auth": {
+            "user": "${ses-user}",
+            "pass": "${ses-pass}"
+        }
+    }
+    },
     "paths": {
         "contentPath": "content/"
     },
